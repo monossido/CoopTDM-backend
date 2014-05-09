@@ -2,6 +2,7 @@ application: cooptdm
 version: 1
 runtime: php
 api_version: 1
+tradesafe: true
 
 handlers:
 - url: /
