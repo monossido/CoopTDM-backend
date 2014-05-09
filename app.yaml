@@ -18,5 +18,5 @@ handlers:
   login: optional
 
 - url: /admin/(.+\.php)$
-  script: admin/index.php
+  script: admin/\1
   login: admin
