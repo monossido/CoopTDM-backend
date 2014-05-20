@@ -19,11 +19,19 @@ if($api_key_fromClient == $api_key) {
 
 	$sqlCheck = "SELECT * FROM Users WHERE DeviceId='$deviceId')";
 
+<<<<<<< HEAD
 	if (!mysqli_query($con,$sql)) {
 	  die('Error: ' . mysqli_error($con));
 	 }
 	$result=mysqli_query($con,$ssqlCheckql)
 	$row = mysqli_fetch_array($result);
+=======
+	$result=mysqli_query($con,$sqlCheck);
+	$row="";
+	if($result!=false) {
+		$row = mysqli_fetch_array($result);
+	}
+>>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 	$sql="";
 
 	//TODO dichiarare unico

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 	$server = "localhost";
 	$user = "root";
 	$password = "winter";

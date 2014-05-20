@@ -13,10 +13,16 @@ if($api_key_fromClient == $api_key) {
 
 	mysqli_query($con, 'SET CHARACTER SET latin1_swedish_ci');
 	mysqli_query($con, "SET NAMES 'utf8'");
+<<<<<<< HEAD
+=======
+	$result = mysqli_query($con,"SELECT * FROM Newsletter");
+
+>>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 
 	$newsArray = array();
 	$catsArray = array();
 
+<<<<<<< HEAD
 	$result = mysqli_query($con,"SELECT * FROM Categorie");
 
 	while($row = mysqli_fetch_array($result)) {
@@ -28,6 +34,8 @@ if($api_key_fromClient == $api_key) {
 	}
 
 	$result = mysqli_query($con,"SELECT * FROM Newsletter");
+=======
+>>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 
 	while($row = mysqli_fetch_array($result)) {
 	  $id = $row['Id'];
@@ -37,6 +45,7 @@ if($api_key_fromClient == $api_key) {
 	  $luogo = $row['Luogo'];
 	  $testo = $row['Testo'];
 	  $categoria = $row['Categoria'];
+<<<<<<< HEAD
 	  $tags = $row['Tags'];
 	  $datapubblicazione = $row['DataPubblicazione'];
 
@@ -52,11 +61,26 @@ if($api_key_fromClient == $api_key) {
 	  	  $tags_result = "$tags_result,$luogo";
 
 	  $arr = array('id' => $id, 'titolo' => $titolo, 'data' => $data, 'ora' => $ora, 'luogo' => $luogo, 'testo' => $testo, 'categoria' => $categoria, 'tags' => $tags_result, 'dataPubblicazione' => $datapubblicazione);
+=======
+	  $arr = array('id' => $id, 'titolo' => $titolo, 'data' => $data, 'ora' => $ora, 'luogo' => $luogo, 'testo' => $testo, 'categoria' => $categoria);
+>>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 
 	array_push($newsArray, $arr);
 	}
 
+<<<<<<< HEAD
 
+=======
+	$result = mysqli_query($con,"SELECT * FROM Categorie");
+
+	while($row = mysqli_fetch_array($result)) {
+	  $titolo = $row['Titolo'];
+	  $id = $row['Id'];
+	  $arr = array('titolo' => $titolo, 'id' => $id);
+
+	array_push($catsArray, $arr);
+	}
+>>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 	$jsonArray = array('news' => $newsArray, 'cats' => $catsArray);
 
 
