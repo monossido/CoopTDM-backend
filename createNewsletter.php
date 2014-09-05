@@ -8,6 +8,7 @@ $ora = $_POST['ora'];
 $luogo = $_POST['luogo'];
 $testo = $_POST['testo'];
 $categoria = $_POST['categoria'];
+$tags =  $_POST['tags'];
 $titolo = mysql_escape_mimic($titolo);
 $tags = mysql_escape_mimic($tags);
 $data = mysql_escape_mimic($data);

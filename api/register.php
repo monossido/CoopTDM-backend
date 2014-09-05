@@ -17,37 +17,30 @@ if($api_key_fromClient == $api_key) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	$sqlCheck = "SELECT * FROM Users WHERE DeviceId='$deviceId')";
+	$sqlCheck = "SELECT * FROM Users WHERE DeviceId='$deviceId'";
 
-<<<<<<< HEAD
-	if (!mysqli_query($con,$sql)) {
-	  die('Error: ' . mysqli_error($con));
-	 }
-	$result=mysqli_query($con,$ssqlCheckql)
-	$row = mysqli_fetch_array($result);
-=======
 	$result=mysqli_query($con,$sqlCheck);
 	$row="";
 	if($result!=false) {
 		$row = mysqli_fetch_array($result);
 	}
->>>>>>> 147fe929963d38158d49d8329d98cfc689270199
 	$sql="";
 
 	//TODO dichiarare unico
 	//TODO inserire più info
-	if(sizeof($row)>0) {
-		$sql = "UPDATE Users SET RegisterId='$registerId', Email='$email', AndroidVersion='$android_version', AppVersion='$app_version' WHERE DeviceId='$deviceId'";
+	if(!empty($row)) {
+		$sql = "UPDATE Users SET RegisterId='$registerId', Email='$email', AndroidVersion='$android_version', AppVersion='$app_version', Data=now() WHERE DeviceId='$deviceId'";
 	} else {
 		$sql = "INSERT INTO Users (DeviceId, RegisterId, Email, AndroidVersion, AppVersion) VALUES ('$deviceId', '$registerId', '$email', '$android_version', '$app_version')";
 	}
 
 	if (!mysqli_query($con,$sql)) {
 	  die('Error: ' . mysqli_error($con));
-	 }
-	$jsonArray = array('result'=>'success');
+	 } else {
+		$jsonArray = array('result'=>'success');
 
-	mysqli_close($con);
+		mysqli_close($con);
+	}
 } else {
 	$jsonArray = array('result'=>'failed');
 }

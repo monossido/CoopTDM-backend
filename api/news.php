@@ -27,7 +27,7 @@ if($api_key_fromClient == $api_key) {
 	array_push($catsArray, $arr);
 	}
 
-	$result = mysqli_query($con,"SELECT * FROM Newsletter");
+	$result = mysqli_query($con,"SELECT * FROM Newsletter ORDER BY Id DESC limit 30");
 
 	while($row = mysqli_fetch_array($result)) {
 	  $id = $row['Id'];
