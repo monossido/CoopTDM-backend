@@ -124,7 +124,7 @@ echo '      </div>
 
     <div id="footer">
       <div class="container">
-        <p class="muted credit">Copyright <a href="http://lorenzobraghetto.com">Lorenzo Braghetto</a> license GPL <a href="http://github.com/monossido">source</a></p>
+        <p class="muted credit">Copyright <a href="http://lorenzobraghetto.com">Lorenzo Braghetto</a> license GPL <a href="http://github.com/monossido/CoopTDM-backend">source</a></p>
       </div>
     </div>';
 ?>
