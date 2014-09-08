@@ -6,7 +6,7 @@ $message_type = $_POST['message_type'];
 $title = $_POST['title'];
 $message = $_POST['message'];
 
-$cron = $_POST['statusstatus'];
+$status = $_POST['status'];
 
 $test = $_POST['test'];
 
@@ -20,14 +20,19 @@ if(isset($message_type)) {
 	}
 
 	$registation_ids = array();
-	$result = mysqli_query($con,"SELECT RegisterId FROM Users");
+	if($test == "test")
+		$result = mysqli_query($con,"SELECT RegisterId FROM Users WHERE Email='racing.inside@gmail.com'");
+	else		
+		$result = mysqli_query($con,"SELECT RegisterId FROM Users");
 	while($row = mysqli_fetch_array($result)) {
 		array_push($registation_ids, $row['RegisterId']);
 	}
 
-
-	#$msg=array("message_type"=>'news');
-	$msg=array("message_type"=>$message_type, "title"=>$title, "message"=>$message, "status"=>$status);
+	if($status="status")
+		$cron = true;
+	else
+		$cron = false;
+	$msg=array("message_type"=>$message_type, "title"=>$title, "message"=>$message, "status"=>$cron);
 	$url='https://android.googleapis.com/gcm/send';
 	$fields=array
 	 (

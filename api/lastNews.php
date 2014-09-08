@@ -18,10 +18,10 @@ if($api_key_fromClient == $api_key) {
 	$row = mysqli_fetch_array($result);
 	$jsonResult = "";
 
-	if(sizeof($row)>0)
-		$jsonResult = "true";
-	else
+	if(empty($row))
 		$jsonResult = "false";
+	else
+		$jsonResult = "true";
 
 	echo "{\"result\":$jsonResult}";
 
