@@ -3,6 +3,8 @@ include '../config.php';
 header('Content-type: application/json');
 $api_key_fromClient = $_POST['api_key'];
 if($api_key_fromClient == $api_key) {
+	$page = $_POST['page'];
+
 	// Create connection
 	$con=mysqli_connect($server,$user,$password,$db_name);
 
@@ -26,8 +28,16 @@ if($api_key_fromClient == $api_key) {
 
 	array_push($catsArray, $arr);
 	}
-
-	$result = mysqli_query($con,"SELECT * FROM Newsletter ORDER BY Id DESC limit 30");
+	if(!isset($page))
+		$result = mysqli_query($con,"SELECT * FROM Newsletter ORDER BY Id DESC limit 10");
+	else {
+		$resultIdTop = mysqli_query($con,"SELECT * FROM Newsletter ORDER BY Id DESC limit 1");
+		while($row = mysqli_fetch_array($resultIdTop)) {
+			$id = $row['Id'];
+		}
+		$from = $id - (10*$page);
+		$result = mysqli_query($con,"SELECT * FROM Newsletter WHERE Id<=$from ORDER BY Id DESC limit 10");
+	}
 
 	while($row = mysqli_fetch_array($result)) {
 	  $id = $row['Id'];
@@ -45,11 +55,10 @@ if($api_key_fromClient == $api_key) {
 
 	  //aggiungo a tags di default category e luogo
 	  $tags_result = "$catsTitolo";
-	  if(strlen($tags)>0)
-	  	$tags_result = "$tags_result,$tags";
-
 	  if(strlen($luogo)>0)
 	  	  $tags_result = "$tags_result,$luogo";
+	  if(strlen($tags)>0)
+	  	$tags_result = "$tags_result,$tags";
 
 	  $arr = array('id' => $id, 'titolo' => $titolo, 'data' => $data, 'ora' => $ora, 'luogo' => $luogo, 'testo' => $testo, 'categoria' => $categoria, 'tags' => $tags_result, 'dataPubblicazione' => $datapubblicazione);
 

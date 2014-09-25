@@ -41,7 +41,7 @@ if(isset($message_type)) {
 	 );
 	$headers=array
 	 (
-	  'Authorization: key=AIzaSyBF0xO7MxWEWaG_o28IMr25IfxHiGt1xW4',
+	  'Authorization: key=',
 	  'Content-Type: application/json'
 	 );
 	$ch=curl_init();
